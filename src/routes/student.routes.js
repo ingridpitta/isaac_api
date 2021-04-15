@@ -5,6 +5,6 @@ const router = Router();
 const studentsController = new StudentsController();
 
 router.get("/", studentsController.getStudents);
-router.get("/:matricula", studentsController.getStudent);
+router.get("/:escola/:matricula", studentsController.getStudent);
 
 export default router;

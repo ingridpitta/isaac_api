@@ -7,7 +7,7 @@ const client = new GraphQLClient(base_url, {
   },
 });
 
-const getStudentsGraphQL = async () => {
+export const getStudentsGraphQL = async () => {
   const query = `
         query {
            users {
@@ -30,7 +30,7 @@ const getStudentsGraphQL = async () => {
   return data;
 };
 
-const getStudentGraphQL = async (id) => {
+export const getStudentGraphQL = async (id) => {
   const query = `
     query {
        user(matricula: ${id}) {
@@ -51,9 +51,4 @@ const getStudentGraphQL = async (id) => {
 
   const data = await client.request(query);
   return data;
-};
-
-export default {
-  getStudentsGraphQL,
-  getStudentGraphQL,
 };

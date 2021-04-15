@@ -1,17 +1,35 @@
 import axios from "axios";
 import { FormatData } from "../utils";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const base_url = process.env.REST_URL;
+let config;
 
-const getStudents = () => {
-  const res = axios
-    .get(base_url, {
-      auth: {
-        token: process.env.REST_TOKEN,
-      },
+const getToken = () => {
+  return axios
+    .post(`${base_url}/login`, {
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
     })
-    .then((response) => {
+    .then((res) => {
+      const { data } = res;
+      config = {
+        headers: { Authorization: `Bearer ${data.token}` },
+      };
+    })
+    .catch((err) => console.log(err));
+};
+
+getToken()
+
+export const getStudents = async () => {
+  const res = axios
+    .get(base_url, config)
+    .then(async (response) => {
       const { data } = response;
+      console.log({ base_url, config });
       const formatedData = await FormatData(data);
 
       return formatedData;
@@ -21,14 +39,10 @@ const getStudents = () => {
   return res;
 };
 
-const getStudent = (id) => {
+export const getStudent = async (id) => {
   const res = axios
-    .get(`${base_url}/${id}`, {
-      auth: {
-        token: process.env.REST_TOKEN,
-      },
-    })
-    .then((response) => {
+    .get(`${base_url}/${id}`, config)
+    .then(async (response) => {
       const { data } = response;
       const formatedData = await FormatData([data]);
 
@@ -37,9 +51,4 @@ const getStudent = (id) => {
     .catch((err) => console.log({ err }));
 
   return res;
-};
-
-export default {
-  getStudents,
-  getStudent,
 };
