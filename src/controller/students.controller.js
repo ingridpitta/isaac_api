@@ -12,13 +12,13 @@ export const getStudents = async (req, res) => {
     const { users: students } = school02Students;
 
     const sch01 = {
-      id: 'sch01',
+      id: "sch01",
       nome: "School 01",
       alunos: school01Students,
     };
 
     const sch02 = {
-      id: 'sch02',
+      id: "sch02",
       nome: "School 02",
       alunos: [...students],
     };
@@ -32,7 +32,7 @@ export const getStudents = async (req, res) => {
       sch02,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
@@ -42,24 +42,14 @@ export const getStudentByID = async (req, res) => {
   let student;
 
   try {
-    if (schoolId == sch01) {
+    if (schoolId == "sch01") {
       student = await getSchool01Data.getStudentByID(token, studentId);
-      console.log({
-        student,
-      });
-      res.status(200).json({
-        student,
-      });
+      res.status(200).json(student);
+    } else {
+      student = await getSchool02Data.getStudentByID(studentId);
+      res.status(200).json(student);
     }
-
-    student = await getSchool02Data.getStudentByID(studentId);
-    console.log({
-      student,
-    });
-    res.status(200).json({
-      student,
-    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };

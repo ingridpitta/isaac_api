@@ -5,18 +5,15 @@ dotenv.config();
 
 const base_url = process.env.REST_URL;
 
-export const getToken = (req, res, next) => {
-  console.log('token')
+export const getToken = () => {
   return axios
     .post(`${base_url}/login`, {
       username: process.env.USERNAME,
       password: process.env.PASSWORD,
     })
-    .then((r) => {
-      const { data } = r;
-      console.log(data)
+    .then((res) => {
+      const { data } = res;
       return data.token;
-      next();
     })
     .catch((err) => console.log(err));
 };

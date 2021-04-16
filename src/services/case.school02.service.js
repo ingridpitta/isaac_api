@@ -1,4 +1,4 @@
-import { GraphQLClient } from "graphql-request";
+import { GraphQLClient, gql } from "graphql-request";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -11,45 +11,46 @@ const client = new GraphQLClient(base_url, {
 });
 
 const getStudents = async () => {
-  const query = `
-                query {
-                    users {
-                    nome
-                    matricula
-                    datanascimento
-                    usuario
-                    email
-                    cpf
-                    sexo
-                    telefone
-                    celular
-                    cep
-                    endereco
-                    }
-                }
-            `;
+  const query = gql`
+    query {
+      users {
+        nome
+        matricula
+        datanascimento
+        usuario
+        email
+        cpf
+        sexo
+        telefone
+        celular
+        cep
+        endereco
+      }
+    }
+  `;
 
   const data = await client.request(query);
   return data;
 };
+
 const getStudentByID = async (id) => {
-  const query = `
-          query {
-             user(matricula: ${id}) {
-              nome
-              matricula
-              datanascimento
-              usuario
-              email
-              cpf
-              sexo
-              telefone
-              celular
-              cep
-              endereco
-             }
-          }
-      `;
+  const query = gql`
+    query {
+      user(matricula: "${id}") {
+        nome
+        matricula
+        datanascimento
+        usuario
+        email
+        cpf
+        sexo
+        telefone
+        celular
+        cep
+        endereco
+      }
+    }
+`;
 
   const data = await client.request(query);
   return data;
