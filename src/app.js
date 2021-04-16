@@ -5,8 +5,6 @@ import studentRoutes from "./routes/student.routes";
 dotenv.config();
 const app = express();
 
-require("./config/db.config");
-
 app.use(express.json());
 app.use("/api", studentRoutes);
 

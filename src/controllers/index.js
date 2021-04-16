@@ -1,1 +1,0 @@
-export { default as StudentsController } from "./students.controller";

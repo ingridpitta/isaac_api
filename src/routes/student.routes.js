@@ -1,10 +1,9 @@
 import { Router } from "express";
-import { StudentsController } from "../controllers";
+import { getStudents, getStudentByID } from "../controller/students.controller";
 const router = Router();
 
-const studentsController = new StudentsController();
 
-router.get("/", studentsController.getStudents);
-router.get("/:escola/:matricula", studentsController.getStudent);
+router.get("/students", getStudents);
+router.get("/school/:schoolId/student/:studentId", getStudentByID);
 
 export default router;

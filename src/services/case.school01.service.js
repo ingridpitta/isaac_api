@@ -1,30 +1,16 @@
 import axios from "axios";
-import { FormatData } from "../utils";
+import { FormatData } from "../utils/formatData";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const base_url = process.env.REST_URL;
-let config;
 
-const getToken = () => {
-  return axios
-    .post(`${base_url}/login`, {
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
-    })
-    .then((res) => {
-      const { data } = res;
-      config = {
-        headers: { Authorization: `Bearer ${data.token}` },
-      };
-    })
-    .catch((err) => console.log(err));
-};
+const getStudents = async (token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
-getToken()
-
-export const getStudents = async () => {
   const res = axios
     .get(base_url, config)
     .then(async (response) => {
@@ -39,7 +25,11 @@ export const getStudents = async () => {
   return res;
 };
 
-export const getStudent = async (id) => {
+const getStudentByID = (token, id) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
   const res = axios
     .get(`${base_url}/${id}`, config)
     .then(async (response) => {
@@ -52,3 +42,8 @@ export const getStudent = async (id) => {
 
   return res;
 };
+
+export const getSchool01Data = {
+    getStudents,
+    getStudentByID
+}

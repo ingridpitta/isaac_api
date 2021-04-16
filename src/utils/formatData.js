@@ -29,7 +29,7 @@ dateFormat.i18n = {
     ]
   };
 
-const FormatData = (data) => {
+export const FormatData = (data) => {
     return data.map(student => {
         const { informacoes_pessoais, contatos, endereco, informacoes_internas} = student;
 
@@ -63,5 +63,3 @@ const FormatData = (data) => {
         return formatedStudent;
     })
 };
-
-export default FormatData;

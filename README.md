@@ -1,0 +1,1 @@
+criar babelrc.js e por as configs do babel lá
