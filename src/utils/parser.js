@@ -29,7 +29,7 @@ dateFormat.i18n = {
     ]
   };
 
-export const FormatData = (data) => {
+export const ParseData = (data) => {
     return data.map(student => {
         const { informacoes_pessoais, contatos, endereco, informacoes_internas} = student;
 
@@ -41,11 +41,11 @@ export const FormatData = (data) => {
 
         const { matricula, username } = informacoes_internas;
 
-        const date = new Date(nascimento.split(" de ").join(" "));
+        // const date = new Date(nascimento.split(" de ").join(" "));
 
-        console.log({date});
+        // console.log({date});
 
-        const formatedStudent = {
+        const parsedData = {
             nome: `${primeiro_nome} ${sobrenome}`,
             matricula,
             // datanascimento: dateFormat(date, "isoDate"),
@@ -60,6 +60,6 @@ export const FormatData = (data) => {
 
         }
 
-        return formatedStudent;
+        return parsedData;
     })
 };

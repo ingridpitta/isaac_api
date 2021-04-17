@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FormatData } from "../utils/formatData";
+import { ParseData } from "../utils/parser";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -16,7 +16,7 @@ const getStudents = async (token) => {
     .then(async (response) => {
       const { data } = response;
       console.log({ base_url, config });
-      const formatedData = await FormatData(data);
+      const formatedData = await ParseData(data);
 
       return formatedData;
     })
@@ -34,7 +34,7 @@ const getStudentByID = (token, id) => {
     .get(`${base_url}/${id}`, config)
     .then(async (response) => {
       const { data } = response;
-      const formatedData = await FormatData([data]);
+      const formatedData = await ParseData([data]);
 
       return formatedData;
     })
@@ -43,7 +43,7 @@ const getStudentByID = (token, id) => {
   return res;
 };
 
-export const getSchool01Data = {
+export const getSchoolRestData = {
     getStudents,
     getStudentByID
 }

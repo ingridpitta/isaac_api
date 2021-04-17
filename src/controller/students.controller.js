@@ -1,15 +1,14 @@
-import { getSchool01Data } from "../services/case.school01.service";
-import { getSchool02Data } from "../services/case.school02.service";
+import { getSchoolRestData } from "../services/case.school.rest.service";
+import { v4 as uuidv4 } from 'uuid';
+import { getSchoolGraphQLData } from "../services/case.school.graphql.service";
 import { getToken } from "../middlewares/getToken";
 
-export const getStudents = async (req, res) => {
+export const getStudents = async (_, res) => {
   const token = await getToken();
 
   try {
-    const school01Students = await getSchool01Data.getStudents(token);
-    const school02Students = await getSchool02Data.getStudents();
-
-    const { users: students } = school02Students;
+    const school01Students = await getSchoolRestData.getStudents(token);
+    const school02Students = await getSchoolGraphQLData.getStudents();
 
     const sch01 = {
       id: "sch01",
@@ -20,14 +19,16 @@ export const getStudents = async (req, res) => {
     const sch02 = {
       id: "sch02",
       nome: "School 02",
-      alunos: [...students],
+      alunos: school02Students,
     };
 
     console.log({
       sch01,
       sch02,
     });
+
     res.status(200).json({
+      requestId: uuidv4(),
       sch01,
       sch02,
     });
@@ -42,13 +43,15 @@ export const getStudentByID = async (req, res) => {
   let student;
 
   try {
-    if (schoolId == "sch01") {
-      student = await getSchool01Data.getStudentByID(token, studentId);
-      res.status(200).json(student);
+    if (schoolId === "sch01") {
+      student = await getSchoolRestData.getStudentByID(token, studentId);
     } else {
-      student = await getSchool02Data.getStudentByID(studentId);
-      res.status(200).json(student);
+      student = await getSchoolGraphQLData.getStudentByID(studentId);
     }
+    res.status(200).json({
+      requestId: uuidv4(),
+      aluno: student
+    });
   } catch (error) {
     console.log(error);
   }

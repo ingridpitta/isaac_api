@@ -30,7 +30,9 @@ const getStudents = async () => {
   `;
 
   const data = await client.request(query);
-  return data;
+  const { users: students } = data;
+
+  return students;
 };
 
 const getStudentByID = async (id) => {
@@ -53,10 +55,12 @@ const getStudentByID = async (id) => {
 `;
 
   const data = await client.request(query);
-  return data;
+  const { user: student } = data;
+
+  return student;
 };
 
-export const getSchool02Data = {
+export const getSchoolGraphQLData = {
   getStudents,
   getStudentByID,
 };
