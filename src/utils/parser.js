@@ -1,33 +1,4 @@
-import dateFormat from "dateformat";
-
-dateFormat.i18n = {
-    monthNames: [
-      "Jan",
-      "Fev",
-      "Mar",
-      "Abr",
-      "Mai",
-      "Jun",
-      "Jul",
-      "Ago",
-      "Set",
-      "Out",
-      "Nov",
-      "Dez",
-      "Janeiro",
-      "Fevereiro",
-      "Março",
-      "Abril",
-      "Maio",
-      "Junho",
-      "Julho",
-      "Agosto",
-      "Setembro",
-      "Outubro",
-      "Novembro",
-      "Dezembro",
-    ]
-  };
+import ParseDate from "./parseDate";
 
 export const ParseData = (data) => {
     return data.map(student => {
@@ -41,14 +12,10 @@ export const ParseData = (data) => {
 
         const { matricula, username } = informacoes_internas;
 
-        // const date = new Date(nascimento.split(" de ").join(" "));
-
-        // console.log({date});
-
         const parsedData = {
             nome: `${primeiro_nome} ${sobrenome}`,
             matricula,
-            // datanascimento: dateFormat(date, "isoDate"),
+            datanascimento: ParseDate(nascimento),
             usuario: username,
             email,
             cpf,
@@ -59,7 +26,6 @@ export const ParseData = (data) => {
             endereco: `${logradouro} ${numlogradouro}`
 
         }
-
         return parsedData;
     })
 };
