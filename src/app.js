@@ -8,4 +8,11 @@ const app = express();
 app.use(express.json());
 app.use("/api", studentRoutes);
 
-app.listen(process.env.PORT, () => console.log(`App running on PORT ${process.env.PORT}`));
+app.use((req, res, next) => {
+  const error = new Error("Not Found");
+  res.status(404).json({ status: 404, message: error.message })
+});
+
+app.listen(process.env.PORT, () =>
+  console.log(`App running on PORT ${process.env.PORT}`)
+);

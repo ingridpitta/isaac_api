@@ -13,7 +13,12 @@ export const getToken = () => {
     })
     .then((res) => {
       const { data } = res;
+
+      !data?.token && new Error();
+
       return data.token;
     })
-    .catch((err) => console.log(err));
+    .catch((error) => {
+      return error;
+    });
 };

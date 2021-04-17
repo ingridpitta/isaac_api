@@ -29,10 +29,17 @@ const getStudents = async () => {
     }
   `;
 
-  const data = await client.request(query);
-  const { users: students } = data;
+  try {
+    const data = await client.request(query);
+    const { users: students } = data;
 
-  return students;
+    !students && new Error();
+
+    return students;
+  } catch (error) {
+    error.message = "Something went wrong";
+    throw error;
+  }
 };
 
 const getStudentByID = async (id) => {
@@ -54,10 +61,17 @@ const getStudentByID = async (id) => {
     }
 `;
 
-  const data = await client.request(query);
-  const { user: student } = data;
+  try {
+    const data = await client.request(query);
+    const { user: student } = data;
 
-  return student;
+    !student.nome && new Error();
+
+    return student;
+  } catch (error) {
+    error.message = "Student not found.";
+    throw error;
+  }
 };
 
 export const getSchoolGraphQLData = {

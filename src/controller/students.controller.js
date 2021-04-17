@@ -1,5 +1,5 @@
 import { getSchoolRestData } from "../services/case.school.rest.service";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { getSchoolGraphQLData } from "../services/case.school.graphql.service";
 import { getToken } from "../middlewares/getToken";
 
@@ -22,18 +22,15 @@ export const getStudents = async (_, res) => {
       alunos: school02Students,
     };
 
-    console.log({
-      sch01,
-      sch02,
-    });
-
     res.status(200).json({
       requestId: uuidv4(),
       sch01,
       sch02,
     });
   } catch (error) {
-    console.log(error);
+    res
+      .status(500)
+      .json({ status: 500, message: error.message });
   }
 };
 
@@ -48,11 +45,14 @@ export const getStudentByID = async (req, res) => {
     } else {
       student = await getSchoolGraphQLData.getStudentByID(studentId);
     }
-    res.status(200).json({
+
+   res.status(200).json({
       requestId: uuidv4(),
-      aluno: student
+      aluno: student,
     });
   } catch (error) {
-    console.log(error);
+    res
+      .status(500)
+      .json({ status: 500, message: error.message });
   }
 };

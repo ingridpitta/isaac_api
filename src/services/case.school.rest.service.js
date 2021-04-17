@@ -15,12 +15,17 @@ const getStudents = async (token) => {
     .get(base_url, config)
     .then(async (response) => {
       const { data } = response;
-      console.log({ base_url, config });
+
+      !data && new Error();
+
       const formatedData = await ParseData(data);
 
       return formatedData;
     })
-    .catch((err) => console.log({ err }));
+    .catch((error) => {
+      error.message = 'Something went wrong'
+      throw error;
+    });
 
   return res;
 };
@@ -34,16 +39,22 @@ const getStudentByID = (token, id) => {
     .get(`${base_url}/${id}`, config)
     .then(async (response) => {
       const { data } = response;
+
+      !data?.nome && new Error();
+
       const formatedData = await ParseData([data]);
 
       return formatedData;
     })
-    .catch((err) => console.log({ err }));
+    .catch((error) => {
+      error.message = 'Student not found.'
+      throw error;
+    });
 
   return res;
 };
 
 export const getSchoolRestData = {
-    getStudents,
-    getStudentByID
-}
+  getStudents,
+  getStudentByID,
+};
