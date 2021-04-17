@@ -8,8 +8,10 @@ const ParseDate = (date) => {
   const day = splitedDate[0];
   const month = moment().month(splitedDate[1]).format("M");
   const year = splitedDate[2];
+
+  const formatedDate = new Date(`${year}-${month}-${day}`);
   
-  return moment(`${year}-${month}-${day}`).format("YYYY-MM-DD");
+  return moment(formatedDate).format("YYYY-MM-DD");
 };
 
 export default ParseDate;

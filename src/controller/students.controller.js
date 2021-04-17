@@ -12,20 +12,19 @@ export const getStudents = async (_, res) => {
 
     const sch01 = {
       id: "sch01",
-      nome: "School 01",
+      nome: "Escola REST",
       alunos: school01Students,
     };
 
     const sch02 = {
       id: "sch02",
-      nome: "School 02",
+      nome: "Escola GraphQL",
       alunos: school02Students,
     };
 
     res.status(200).json({
       requestId: uuidv4(),
-      sch01,
-      sch02,
+      data: [sch01, sch02]
     });
   } catch (error) {
     res
@@ -48,7 +47,7 @@ export const getStudentByID = async (req, res) => {
 
    res.status(200).json({
       requestId: uuidv4(),
-      aluno: student,
+      data: student,
     });
   } catch (error) {
     res

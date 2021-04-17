@@ -39,11 +39,11 @@ const getStudentByID = (token, id) => {
     .get(`${base_url}/${id}`, config)
     .then(async (response) => {
       const { data } = response;
-
+   
       !data?.nome && new Error();
 
       const formatedData = await ParseData([data]);
-
+      
       return formatedData;
     })
     .catch((error) => {

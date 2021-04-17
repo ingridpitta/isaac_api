@@ -1,7 +1,7 @@
 import ParseDate from "./parseDate";
 
 export const ParseData = (data) => {
-    return data.map(student => {
+    const formatedData = data.map(student => {
         const { informacoes_pessoais, contatos, endereco, informacoes_internas} = student;
 
         const { primeiro_nome, sobrenome, sexo, nascimento, cpf } = informacoes_pessoais;
@@ -27,5 +27,7 @@ export const ParseData = (data) => {
 
         }
         return parsedData;
-    })
+    });
+
+    return formatedData[0];
 };
