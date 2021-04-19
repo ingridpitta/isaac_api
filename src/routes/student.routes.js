@@ -92,7 +92,7 @@ const router = Router();
  * @swagger
  * tags:
  *   name: Students
- *   description: Isaac students
+ *   description: Consult Isaac students
  */
 
 /**
@@ -129,7 +129,7 @@ router.get("/students", getStudents);
  * @swagger
  * /api/school/{schoolId}/student/{studentId}:
  *   get:
- *     summary: Returns a student from a specific School tracked by the student ID
+ *     summary: Returns a student from a specific school tracked by their enrollment number
  *     tags: [Students]
  *     parameters:
  *       - in: path
@@ -137,13 +137,13 @@ router.get("/students", getStudents);
  *         schema:
  *           type: string
  *         required: true
- *         description: The school ID
+ *         description: The school ID (REST School ID is sch01 | GraphQL School ID is sch02)
  *       - in: path
  *         name: studentId
  *         schema:
  *           type: string
  *         required: true
- *         description: The student ID
+ *         description: The student ID (uuid/enrollment)
  *     responses:
  *       200:
  *        description: The student of a specific school

@@ -11,9 +11,9 @@ const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Isaac Students API",
+      title: "Isaac's Students API",
       version: "1.0.0",
-      description: "A simple Express API for get Students information",
+      description: "A simple Express API for Isaac's Coding Challenge",
     },
     servers: [
       {
