@@ -10,7 +10,7 @@ const ParseDate = (date) => {
   const year = splitedDate[2];
 
   const formatedDate = new Date(`${year}-${month}-${day}`);
-  
+
   return moment(formatedDate).format("YYYY-MM-DD");
 };
 

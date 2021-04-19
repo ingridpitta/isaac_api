@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const base_url = process.env.GRAPHQL_URL;
-const client = new GraphQLClient(base_url, {
+const baseUrl = process.env.GRAPHQL_URL;
+const client = new GraphQLClient(baseUrl, {
   headers: {
     Authorization: `Basic ${process.env.GRAPHQL_TOKEN}`,
   },

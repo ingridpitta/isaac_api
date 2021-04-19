@@ -92,7 +92,7 @@ const router = Router();
  * @swagger
  * tags:
  *   name: Students
- *   description: The Isaac students API
+ *   description: Isaac students
  */
 
 /**
@@ -163,9 +163,8 @@ router.get("/students", getStudents);
  *                          $ref: '#/components/schemas/Student'
  *       404:
  *          description: Student not found
- *                                  
+ *
  */
-
 
 router.get("/school/:schoolId/student/:studentId", getStudentByID);
 

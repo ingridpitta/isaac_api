@@ -1,10 +1,10 @@
 import axios from "axios";
-import { ParseData } from "../utils/parser";
 import dotenv from "dotenv";
+import { ParseData } from "../utils/parser";
 
 dotenv.config();
 
-const base_url = process.env.REST_URL;
+const baseUrl = process.env.REST_URL;
 
 const getStudents = async (token) => {
   const config = {
@@ -12,7 +12,7 @@ const getStudents = async (token) => {
   };
 
   const res = axios
-    .get(base_url, config)
+    .get(baseUrl, config)
     .then(async (response) => {
       const { data } = response;
 
@@ -23,7 +23,7 @@ const getStudents = async (token) => {
       return formatedData;
     })
     .catch((error) => {
-      error.message = 'Something went wrong'
+      error.message = "Something went wrong";
       throw error;
     });
 
@@ -36,18 +36,18 @@ const getStudentByID = (token, id) => {
   };
 
   const res = axios
-    .get(`${base_url}/${id}`, config)
+    .get(`${baseUrl}/${id}`, config)
     .then(async (response) => {
       const { data } = response;
-   
+
       !data?.nome && new Error();
 
       const formatedData = await ParseData([data]);
-      
+
       return formatedData[0];
     })
     .catch((error) => {
-      error.message = 'Student not found.'
+      error.message = "Student not found.";
       throw error;
     });
 

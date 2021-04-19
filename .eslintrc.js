@@ -19,5 +19,9 @@ module.exports = {
     "no-irregular-whitespace": 0,
     "no-underscore-dangle": 0,
     quotes: [2, "double", { avoidEscape: true }],
+    "import/prefer-default-export": "off",
+    "no-unused-expressions": 0,
+    "no-param-reassign": ["error", { "props": false }],
+    "camelcase": [0,"error", {ignoreDestructuring: true}]
   },
 };
