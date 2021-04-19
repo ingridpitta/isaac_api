@@ -1,5 +1,5 @@
 
-# Isaac's Students API [EN-US]
+# Isaac's Students API
 
 > **API developed for Isaac's Coding Challenge** 
 > 
@@ -44,11 +44,11 @@ Ex.: `localhost:3000/api/docs`
 
 With this API it is possible to:
 
-* List students `/ api / students` (Returns a list of 4 students from each school)
+* List students `/api/students` (Returns a list of 4 students from each school)
 
-* Search for a student from a specific school according to the uuid/enrollment `/ api / school /: schoolId / student /: studentId`
+* Search for a student from a specific school according to the uuid/enrollment `/api/school/:schoolId/student/:studentId`
 
-* Consult the API documentation `/ api / docs`
+* Consult the API documentation `/api/docs`
 
 School IDs are:
 
@@ -59,7 +59,7 @@ School IDs are:
 Created by [@ingridpitta](https://www.linkedin.com/in/ingridpitta/) - feel free to contact me!
 
 
-# API de Estudantes do Isacc [PT-BR]
+# API de Estudantes do Isacc
 
 > **API desenvolvida para o Coding Challenge do Isaac** 
 > 
