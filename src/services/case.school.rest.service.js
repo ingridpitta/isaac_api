@@ -44,7 +44,7 @@ const getStudentByID = (token, id) => {
 
       const formatedData = await ParseData([data]);
       
-      return formatedData;
+      return formatedData[0];
     })
     .catch((error) => {
       error.message = 'Student not found.'

@@ -51,7 +51,7 @@ export const getStudentByID = async (req, res) => {
     });
   } catch (error) {
     res
-      .status(500)
-      .json({ status: 500, message: error.message });
+      .status(404)
+      .json({ status: 404, message: error.message });
   }
 };
